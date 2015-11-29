@@ -1,7 +1,6 @@
 package io.cenet.angular
 
 import scala.scalajs.js.JSApp
-import scala.scalajs.js.annotation.JSExportAll
 
 import biz.enef.angulate._
 import biz.enef.angulate.core.HttpService
@@ -15,11 +14,11 @@ object AngularModule extends JSApp {
     
     println("Starting angular ...")
     
-    val module = angular.createModule("app", Nil)
+    val module = angular.createModule("app", Seq("ngRoute"))
 
     //  module.serviceOf[RestService]
 
-    module.controllerOf[ListController]
+    module.controllerOf[ListController]("ListController")
 
     //  module.directiveOf[UserDirective]
 

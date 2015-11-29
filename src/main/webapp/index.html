@@ -32,14 +32,12 @@
       </li>
     </ol>
     
-    <div ng-controller="ListController as List">
+    <div ng-controller="ListController as list">
     	<h1>Haj</h1>
-    	<p>Response: {{response}}</p>
+    	<p>Response: {{list.response}}</p>
     </div>
     
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-	
-	<script src="sbt-for-scala-js-build-fastopt.js"></script>
 	
 	<script type="text/javascript">
 	function splitSubmit(formElement) {
@@ -63,9 +61,18 @@
         gapi.client.load('named', 'v1', namedLoaded, '//' + window.location.host + '/_ah/api');
 //         gapi.client.load('oauth2', 'v2', oauth2Loaded);
     	}
+  	
     </script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  	
+	<script src="sbt-for-scala-js-build-fastopt.js"></script>
+	
+  	<script type="text/javascript">
+  	io.cenet.angular.AngularModule().main();
+	</script>
+	
     <script src="https://apis.google.com/js/client.js?onload=localInit">
     </script>
 </body>

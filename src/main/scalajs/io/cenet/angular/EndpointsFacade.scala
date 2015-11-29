@@ -25,7 +25,9 @@ class NamedFacade extends js.Object {
 
 object EndpointsFacade {
   
-  def apply() = new EndpointsFacade
+  lazy val facade = new EndpointsFacade
+  
+  def apply() = facade
 }
 
 class EndpointsFuture extends js.Object {
