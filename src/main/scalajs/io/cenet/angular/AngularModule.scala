@@ -1,28 +1,38 @@
 package io.cenet.angular
 
+import scala.scalajs.js.JSApp
+import scala.scalajs.js.annotation.JSExportAll
+
 import biz.enef.angulate._
 import biz.enef.angulate.core.HttpService
 import biz.enef.angulate.ext.{ Route, RouteProvider }
 
-class AngularModule {
+import io.cenet.angular.list.ListController
 
-  val module = angular.createModule("app")
+object AngularModule extends JSApp {
 
-  module.serviceOf[RestService]
+  override def main(): Unit = {
+    
+    println("Starting angular ...")
+    
+    val module = angular.createModule("app", Nil)
 
-  module.controllerOf[UserCtrl]
+    //  module.serviceOf[RestService]
 
-//  module.directiveOf[UserDirective]
+    module.controllerOf[ListController]
 
-  module.config(($routeProvider: RouteProvider) => {
-    $routeProvider.
-      when("/user/:id", Route(templateUrl = "/tpl/userDetails.html")).
-      otherwise(Route(redirectTo = "/"))
-  })
+    //  module.directiveOf[UserDirective]
 
-  module.run(initApp _)
+    module.config(($routeProvider: RouteProvider) => {
+      $routeProvider.
+        when("/user/:id", Route(templateUrl = "/tpl/userDetails.html")).
+        otherwise(Route(redirectTo = "/"))
+    })
 
-  def initApp($http: HttpService) = {
+    module.run(initApp _)
 
+    def initApp($http: HttpService) = {
+      println("init angular app ...")
+    }
   }
 }

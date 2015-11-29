@@ -21,14 +21,20 @@
 	<prerequisites>
 		<maven>3.1.0</maven>
 	</prerequisites>
-
-<!-- 	<repositories> -->
-<!-- 		<repository> -->
-<!-- 			<id>1</id> -->
-<!-- 			<name>sonatype</name> -->
-<!-- 			<url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
-<!-- 		</repository> -->
-<!-- 	</repositories> -->
+	<repositories>
+		<repository>
+			<id>scala-tools.org</id>
+			<name>Scala-tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>scala-tools.org</id>
+			<name>Scala-tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<!-- Compile/runtime dependencies -->
@@ -103,18 +109,18 @@
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>2.10.5</version>
+			<version>2.11.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.scala-js</groupId>
-			<artifactId>scalajs-library_2.10</artifactId>
+			<artifactId>scalajs-library_2.11</artifactId>
 			<version>0.6.5</version>
 		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-json_2.10</artifactId>
-			<version>2.4.3</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.typesafe.play</groupId> -->
+<!-- 			<artifactId>play-json_2.10</artifactId> -->
+<!-- 			<version>2.4.3</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>biz.enef</groupId>
 			<artifactId>scalajs-angulate_sjs0.6_2.11</artifactId>
@@ -180,6 +186,26 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<scalaVersion>2.11.7</scalaVersion>
+					<sourceDir>src/main/java</sourceDir>
+					<jvmArgs>
+						<jvmArg>-Xms64m</jvmArg>
+						<jvmArg>-Xmx1024m</jvmArg>
+					</jvmArgs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

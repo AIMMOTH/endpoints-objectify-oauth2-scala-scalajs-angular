@@ -9,5 +9,6 @@ object SplitValidator {
   def apply(text : String) = text.split(",") match {
     case array@Array(a, _) => array
     case Array(a) => throw new Exception("There needs to be at least two arguments split by one comma!")
+    case _ => Array(text)
   }
 }
