@@ -1,0 +1,66 @@
+<html>
+<head></head>
+<body>
+
+    <h2>Scala JS</h2>
+
+    <p>The Scala JS validator will check there's at least two values. It's used on backend and frontend.</p>
+
+    <form onsubmit="return splitSubmit(this)">
+      <p>Enter comma separated values.</p>
+      <input type="text" name="text" placeholder="Value 1, value 2 ...">
+      <input type="submit">
+    </form>
+
+    <h2>Google Endpoints</h2>
+    
+    <p>The following example explains how to use the simple ListAPI with Google Endpoints generated JavaScript</p>
+    
+    <ol>
+      <li>
+        POST which creates an entity. The response will be its id.
+        <pre>
+          gapi.client.list.listApi.post({csv: "saj, daj"}).execute(function (response) { console.dir(response); });
+        </pre>
+        Returns object including id "5629499534213120".
+      </li>
+      <li>
+        Use the returned id to GET it.
+        <pre>
+          gapi.client.list.listApi.get({id: "5629499534213120"}).execute(function (response) { console.dir(response); });
+        </pre>
+      </li>
+    </ol>
+    
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	
+	<script src="sbt-for-scala-js-build-fastopt.js"></script>
+	
+	<script type="text/javascript">
+	function splitSubmit(formElement) {
+	  try {
+	    	var form = $(formElement);
+		  io.cenet.scalajs.validator.SplitValidator().apply(form.find("[name='text']").val());
+		  alert("Ok!");
+	  } catch (exception) {
+	    alert(exception);
+	  }
+	  return false;
+	}
+	function listLoaded() {
+		console.info("haj");
+	}
+	function namedLoaded() {
+		
+	}
+  	function localInit() {
+        gapi.client.load('list' , 'v1', listLoaded , '//' + window.location.host + '/_ah/api');
+        gapi.client.load('named', 'v1', namedLoaded, '//' + window.location.host + '/_ah/api');
+//         gapi.client.load('oauth2', 'v2', oauth2Loaded);
+    	}
+    </script>
+
+    <script src="https://apis.google.com/js/client.js?onload=localInit">
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.cache-main
+.classpath
+.project
+/settings/
+/project/project/
+/project/target/
+/src/main/webapp/sbt-for-scala-js-build-fastopt.js
+/src/main/webapp/sbt-for-scala-js-build-fastopt.js.map
+
+/src/main/webapp/WEB-INF/classes/
+/src/main/webapp/WEB-INF/lib/
+/target/
