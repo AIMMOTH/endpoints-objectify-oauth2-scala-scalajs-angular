@@ -29,6 +29,7 @@ class ListFacade extends js.Object {
 @js.native
 class ListApiFacade extends js.Object {
   def get(id : Long) : (js.Object => Unit) = js.native
+  def getAll : EndpointsFuture = js.native
 }
 @js.native
 class NamedFacade extends js.Object {
@@ -37,5 +38,5 @@ class NamedFacade extends js.Object {
 @js.native
 class EndpointsFuture extends js.Object {
   
-  def execute(response: js.Object) : Unit = js.native
+  def execute(response: js.Object) : Unit = js.Dynamic.global.console.dir(response)
 }

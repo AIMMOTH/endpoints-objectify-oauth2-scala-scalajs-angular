@@ -9,19 +9,24 @@ import org.scalajs.dom.raw.Window
 import biz.enef.angulate.Scope
 import io.cenet.angular.GapiFacade
 import io.cenet.angular.ClientFacade
+import biz.enef.angulate.ScopeController
 
-class ListController($scope: Scope) extends Controller {
+trait ListScope extends Scope {
+  var fetch : js.Function = js.native
+}
+
+class ListController($scope: js.Dynamic) extends ScopeController  {
 
   var response = "test"
-
-  def callback: Unit = {
-    println("callback")
-    val t = EndpointsFacade
-    t.gapi.client.list.listApi.get(0l) { response: js.Object =>
-      this.response = response.toString
-    }
+  $scope.fetch = () => {
+    EndpointsFacade.gapi.client.list.listApi.getAll.execute (_)
+//    EndpointsFacade.gapi.client.list.listApi.getAll { response : js.Object =>
+//      js.Dynamic.global.console.dir(response)
+//      this.response = response.toString
+//    }
   }
   
-  val facade = EndpointsFacade
-  facade.gapi.client.load("list", "v1", callback, "//localhost:8080/_ah/api") // TypeError: Cannot read property 'load' of undefined
+  def callback = js.Dynamic.global.console.dir("Loading ...")
+  
+  $scope.load = () => EndpointsFacade.gapi.client.load("list", "v1", callback, "//localhost:8080/_ah/api")
 }

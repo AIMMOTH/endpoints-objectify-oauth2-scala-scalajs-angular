@@ -32,6 +32,8 @@
 	<div ng-controller="ListController as list">
 		<h1>Haj</h1>
 		<p>Response: {{list.response}}</p>
+		<p><input type="button" ng-click="load()" value="Load"></p>
+		<p><input type="button" ng-click="fetch()" value="Fetch"></p>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -61,10 +63,13 @@
 	<script type="text/javascript">
 		// Start Angular
 		io.cenet.angular.AngularModule().main();
+		// Make sure global function calls Scala JS function
+		function localInit() {
+			io.cenet.endpoints.LocalInit().localInit;
+		}
 	</script>
 
 	<script src="https://apis.google.com/js/client.js?onload=localInit">
-		
 	</script>
 </body>
 </html>

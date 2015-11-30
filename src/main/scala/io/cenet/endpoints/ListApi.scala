@@ -1,26 +1,31 @@
 package io.cenet.endpoints
 
-import java.lang.{Long => JLong}
-import javax.inject.Named
+import java.lang.{ Long => JLong }
+
 import scala.collection.JavaConversions._
+
 import com.google.api.server.spi.config.Api
 import com.google.api.server.spi.config.ApiMethod
+import com.google.appengine.api.users.{ User => ApiUser }
 import com.googlecode.objectify.Key
-import com.google.appengine.api.users.{User => ApiUser}
 import com.googlecode.objectify.VoidWork
-import java.util.Arrays
-import io.cenet.shared.validator.SplitValidator
+
 import io.cenet.datastore.Objectify
-import io.cenet.endpoints.result.IdResult
 import io.cenet.datastore.entity.ListEntity
+import io.cenet.endpoints.result._
+import io.cenet.shared.validator.SplitValidator
+import javax.inject.Named
 
 @Api(version = "v1", name = "list", authenticators = Array(classOf[ScalaAuthenticator]))
 class ListApi {
   
+  @ApiMethod(httpMethod = "get")
+  def getAll = new ListIdResult(Objectify.load.`type`(classOf[ListEntity]).keys().list.map(_.getId.asInstanceOf[java.lang.Long]).toList)
+  
   /**
    * Get by id.
    */
-  @ApiMethod(httpMethod = "get")
+  @ApiMethod(httpMethod = "get", path = "{id}")
   def get(@Named("id") id : JLong) =
     Objectify.load.key(Key.create(classOf[ListEntity], id)).now
   
@@ -30,7 +35,7 @@ class ListApi {
   @ApiMethod(httpMethod = "post")
   def post(@Named("csv") csv : String) =
     Objectify.save.entity(new ListEntity(SplitValidator(csv).toList)).now match {
-      case entity => IdResult(entity.getId)
+      case entity => new IdResult(entity.getId)
     }
   
   /**
