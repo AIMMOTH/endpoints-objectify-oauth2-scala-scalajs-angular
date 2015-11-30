@@ -3,7 +3,7 @@
 Maven
 -----
 
-1) Optional: Build Scala JS with 1.1) $ SBT 1.2) fastOptJS
+1) Build Scala JS with 1.1) $ SBT 1.2) fastOptJS
 
 2) Run with $ mvn appengine:devserver
 
@@ -14,13 +14,11 @@ Run locally with Appengine SDK.
 
 1) Build with maven $ mvn package
 
-2) Copy files to source $ copy target/endpoints-objectify-oauth2-scala-scalajs/WEB-INF/lib/* src/main/webapp/WEB-INF/lib/
+2) Optional: Download Appengine SDK or look for it in Maven repostiory
 
-3) Optional: Download Appengine SDK or look for it in Maven repostiory
+3) Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 target/.../webapp
 
-4) Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 src/main/webapp
-
-5) Optional: Add flag to start Java remote debugger
+4) Optional: Add flag to start Java remote debugger
 
 ```
 --jvm_flag=-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
@@ -66,3 +64,11 @@ http://scala-ide.org/download/current.html
 4) Import in Eclipse
 
 5) Set source and target output
+
+Notes
+-----
+
+- Remove RestService
+- Move EndpointsFacade to endpoints pacakge
+- Set source for Scala JS to src/main/scalajs and remove Objectify dependency in SBT
+- Make it work and make sure it works on App Engine. Needs Java 7 compilation!
