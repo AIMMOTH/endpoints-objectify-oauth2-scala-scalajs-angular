@@ -10,7 +10,4 @@ val jsDir = "src/main/webapp" // Output dir for JavaScript generation
 
 crossTarget in (Compile, fastOptJS) := file(jsDir)
 
-libraryDependencies ++= Seq(
-    "biz.enef" %%% "scalajs-angulate" % "0.2.2",
-    "com.googlecode.objectify" % "objectify" % "5.1.8"
-  )
+libraryDependencies += "biz.enef" %%% "scalajs-angulate" % "0.2.2"

@@ -2,7 +2,7 @@ package io.cenet.endpoints
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
-import io.cenet.angular.EndpointsFacade
+import io.cenet.endpoints.EndpointsFacade
 
 @JSExport
 class LocalInit {

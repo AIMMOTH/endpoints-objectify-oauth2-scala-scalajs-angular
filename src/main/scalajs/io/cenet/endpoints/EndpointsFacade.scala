@@ -1,7 +1,6 @@
-package io.cenet.angular
+package io.cenet.endpoints
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
 
 @js.native
 object EndpointsFacade extends js.GlobalScope {

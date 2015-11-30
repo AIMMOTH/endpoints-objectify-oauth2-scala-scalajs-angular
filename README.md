@@ -65,10 +65,9 @@ http://scala-ide.org/download/current.html
 
 5) Set source and target output
 
+6) Copy all libs from Maven build (target/enpoints.../WEB-INF/lib/*) to source (src/main/webapp/WEB-INF/lib/)
+
 Notes
 -----
 
-- Remove RestService
-- Move EndpointsFacade to endpoints pacakge
-- Set source for Scala JS to src/main/scalajs and remove Objectify dependency in SBT scalaSource in Compile := baseDirectory.value / "src"
 - Make it work and make sure it works on App Engine. Needs Java 7 compilation!
