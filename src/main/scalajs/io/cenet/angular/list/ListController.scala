@@ -24,12 +24,10 @@ class ListController($scope: js.Dynamic) extends ScopeController  {
     val opt_context : js.Object = null
     
     val getAll = EndpointsFacade.gapi.client.list.listApi.getAll
-    js.Dynamic.global.console.dir(getAll)
     getAll.then(opt_onFulfilled, opt_onRejected, opt_context)
 
     // This fails with "cannot find parameter 'id'"
 //    val get = EndpointsFacade.gapi.client.list.listApi.get(Map("id" -> 0l))
-//    js.Dynamic.global.console.dir(get)
 //    get.then(opt_onFulfilled, opt_onRejected, opt_context)
   }
 }
