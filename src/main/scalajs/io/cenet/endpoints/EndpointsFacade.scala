@@ -14,6 +14,7 @@ trait GapiFacade extends js.Object {
   def load(apiName : String, version : String, callback : Unit, url : String) : Unit = js.native
   val platform = js.Dynamic
   val widget = js.Dynamic
+//  def request(
 }
 @js.native
 trait ClientFacade extends js.Object {
@@ -26,19 +27,19 @@ trait ListFacade extends js.Object {
 }
 @js.native
 trait ListApiFacade extends js.Object {
-  def get(parmaters : Map[String, Long]) : Promise = js.native
-  val getAll : Promise = js.native
+  def get(parameters : js.Object) : GooglePromise = js.native
+  def getAll() : GooglePromise = js.native
 }
 
 /**
  * https://developers.google.com/api-client-library/javascript/features/promises
  */
 @js.native
-trait Promise extends js.Object {
-  def then(opt_onFulfilled : js.Function1[Response, js.Dynamic], opt_onRejected : js.Function1[Response, js.Dynamic], opt_context : js.Object) : Unit = js.native
+trait GooglePromise extends js.Object {
+  def then(opt_onFulfilled : js.Function1[GoogleResponse, js.Dynamic], opt_onRejected : js.Function1[GoogleResponse, js.Dynamic], opt_context : js.Object) : Unit = js.native
 }
 @js.native
-trait Response extends js.Object {
+trait GoogleResponse extends js.Object {
   val result    : js.Dynamic= js.native
   val body      : String    = js.native
   val headers   : js.Object = js.native
