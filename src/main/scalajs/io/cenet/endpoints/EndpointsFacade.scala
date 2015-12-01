@@ -1,6 +1,7 @@
 package io.cenet.endpoints
 
 import scala.scalajs.js
+import io.cenet.angular.list.IdRequest
 
 @js.native
 object EndpointsFacade extends js.GlobalScope {
@@ -14,7 +15,6 @@ trait GapiFacade extends js.Object {
   def load(apiName : String, version : String, callback : Unit, url : String) : Unit = js.native
   val platform = js.Dynamic
   val widget = js.Dynamic
-//  def request(
 }
 @js.native
 trait ClientFacade extends js.Object {
