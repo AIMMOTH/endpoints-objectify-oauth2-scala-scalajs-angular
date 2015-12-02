@@ -13,6 +13,7 @@
 		<app.id>your-app-id</app.id>
 		<app.version>1</app.version>
 		<appengine.version>1.9.28</appengine.version>
+		<scala.version>2.11.7</scala.version>
 		<gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -109,18 +110,13 @@
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>2.11.7</version>
+			<version>${scala.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.scala-js</groupId>
 			<artifactId>scalajs-library_2.11</artifactId>
 			<version>0.6.5</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.typesafe.play</groupId> -->
-<!-- 			<artifactId>play-json_2.10</artifactId> -->
-<!-- 			<version>2.4.3</version> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>biz.enef</groupId>
 			<artifactId>scalajs-angulate_sjs0.6_2.11</artifactId>
@@ -198,7 +194,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<scalaVersion>2.11.7</scalaVersion>
+					<scalaVersion>${scala.version}</scalaVersion>
 					<sourceDir>src/main/java</sourceDir>
 					<jvmArgs>
 						<jvmArg>-Xms64m</jvmArg>
@@ -208,7 +204,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<version>3.1</version>
+				<version>3.3</version>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.7</source>
@@ -248,6 +244,7 @@
 				<version>${appengine.version}</version>
 				<configuration>
 					<enableJarClasses>false</enableJarClasses>
+		        	<appId>${app.id}</appId>
 					<version>${app.version}</version>
 					<!-- Comment in the below snippet to bind to all IPs instead of just 
 						localhost -->
