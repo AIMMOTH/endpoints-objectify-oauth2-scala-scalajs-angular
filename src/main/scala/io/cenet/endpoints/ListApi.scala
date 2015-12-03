@@ -13,7 +13,7 @@ import com.googlecode.objectify.VoidWork
 import io.cenet.datastore.Objectify
 import io.cenet.datastore.entity.ListEntity
 import io.cenet.endpoints.result._
-import io.cenet.shared.validator.SplitValidator
+import io.cenet.shared.SplitValidator
 import javax.inject.Named
 
 @Api(version = "v1", name = "list", authenticators = Array(classOf[ScalaAuthenticator]))

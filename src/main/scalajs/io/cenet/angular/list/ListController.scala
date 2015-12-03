@@ -12,31 +12,43 @@ import io.cenet.endpoints.GooglePromise
 import io.cenet.endpoints.GoogleResponse
 import scala.scalajs.js.JSON
 import org.scalajs.dom.window
+import js.Dynamic.global
 
-class ListController($scope: js.Dynamic) extends ScopeController  {
+class ListController($scope : js.Dynamic) extends ScopeController  {
 
-  var postInput = "test"
-  var getInput = 0l
-  var getOutput = ""
-  val listApi = EndpointsFacade.gapi.client.list.listApi
+  $scope.postInput = "test"
+  $scope.getInput = 0l
+  $scope.getOutput = ""
   
-  $scope.post = () => listApi.post(StringRequest(postInput))
+  /*
+   *  Do this on call since it needs to be loaded before use
+   *  @see io.cenet.endpoints.LocalInit	
+   */
+  private def listApi = EndpointsFacade.gapi.client.list.listApi
+  
+  $scope.post = () => listApi.post(StringRequest($scope.postInput.asInstanceOf[String]))
     .then((response : GoogleResponse) => window.alert(s"OK:${response.body}"))
     
-  $scope.get = () => listApi.get(IdRequest(getInput))
-    .then((response : GoogleResponse) => getOutput = response.body)
+  $scope.get = () => {
+    global.console.dir("c:" + $scope.getInput)
+    listApi.get(IdRequest($scope.getInput))
+    .then((response : GoogleResponse) => {
+      js.Dynamic.global.console.dir(response.body)
+      $scope.getOutput = response.body
+      })
+  }
 }
 trait IdRequest extends js.Object {
-  val id : Long = js.native
+  val id : js.Dynamic = js.native
 }
 object IdRequest {
-  def apply(id : Long) : IdRequest = 
+  def apply(id : js.Dynamic) : IdRequest = 
     js.Dynamic.literal(id = id).asInstanceOf[IdRequest]
 }
 trait StringRequest extends js.Object {
-  val text : String = js.native
+  val csv : String = js.native
 }
 object StringRequest {
-  def apply(text : String) : StringRequest = 
-    js.Dynamic.literal(text = text).asInstanceOf[StringRequest]
+  def apply(csv : String) : StringRequest = 
+    js.Dynamic.literal(csv = csv).asInstanceOf[StringRequest]
 }
