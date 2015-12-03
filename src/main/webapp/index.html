@@ -1,73 +1,62 @@
 <html>
-<head></head>
+<head>
+<title>ScalaJS implementation of Angular and Endpoints</title>
+<link rel="stylesheet" href="css/foundation.css" />
+<link rel="stylesheet" href="css/app.css" />
+</head>
 <body ng-app="app">
 
-	<h2>Scala JS</h2>
+  <div class="row">
+    <div class="large-12 columns">
+      <h1>Angular using Endpoints in ScalaJS</h1>
+    </div>
+  </div>
+  
+  <div ng-controller="ListController as list">
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Create</label>
+        <p>Create a new list entity</p>
+        <form ng-submit="post()">
+          <input type="text" ng-model="postInput">
+          <input type="submit" value="POST">
+        </form>
+      </div>
+      <div class="large-12 columns">
+        <label>Get</label>
+        <p>Get a created entity via its id.</p>
+        <form ng-submit="get()">
+          <input type="number" ng-model="getInput">
+          <input type="submit" value="GET">
+          <textarea ng-model="getOutput"></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
 
-	<p>The Scala JS validator will check there's at least two values.
-		It's used on backend and frontend.</p>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
-	<form onsubmit="return splitSubmit(this)">
-		<p>Enter comma separated values.</p>
-		<input type="text" name="text" placeholder="Value 1, value 2 ...">
-		<input type="submit">
-	</form>
+  <script src="sbt-for-scala-js-build-fastopt.js"></script>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/what-input.min.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script src="js/app.js"></script>
 
-	<h2>Google Endpoints</h2>
-
-	<p>The following example explains how to use the simple ListAPI
-		with Google Endpoints generated JavaScript</p>
-
-	<ol>
-		<li>POST which creates an entity. The response will be its id. <pre>
-          gapi.client.list.listApi.post({csv: "saj, daj"}).execute(function (response) { console.dir(response); });
-        </pre> Returns object including id "5629499534213120".
-		</li>
-		<li>Use the returned id to GET it. <pre>
-          gapi.client.list.listApi.get({id: "5629499534213120"}).execute(function (response) { console.dir(response); });
-        </pre>
-		</li>
-	</ol>
-
-	<div ng-controller="ListController as list">
-		<h1>Haj</h1>
-		<p><input type="button" ng-click="fetch()" value="Fetch"></p>
-	</div>
-
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-
-	<script type="text/javascript">
-		// Example of using ScalaJS as shared logic with backend
-		function splitSubmit(formElement) {
-			try {
-				var form = $(formElement);
-				var value = form.find("[name='text']").val();
-				io.cenet.scalajs.validator.SplitValidator().apply(value);
-				// Validated
-				alert("Ok!");
-			} catch (exception) {
-				// Could not validate
-				alert(exception);
-			}
-			return false;
-		}
-	</script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-
-	<script src="sbt-for-scala-js-build-fastopt.js"></script>
-
-	<script type="text/javascript">
-		// Start Angular
-		io.cenet.angular.AngularModule().main();
-		// Make sure global function calls Scala JS function
-		function localInit() {
-			io.cenet.endpoints.LocalInit().localInit();
-		}
-	</script>
-
-	<script src="https://apis.google.com/js/client.js?onload=localInit">
-	</script>
+  <script src="https://apis.google.com/js/client.js?onload=localInit"></script>
+  
+  <!-- The only javascript you need! -->
+  <script type="text/javascript">
+	  //Start foundation
+    $(document).foundation();
+  
+    // Start Angular
+    io.cenet.angular.AngularModule().main();
+  
+    // Endpoints callback when it's loaded
+    function localInit() {
+      io.cenet.endpoints.LocalInit().localInit();
+    }
+  </script>
 </body>
 </html>

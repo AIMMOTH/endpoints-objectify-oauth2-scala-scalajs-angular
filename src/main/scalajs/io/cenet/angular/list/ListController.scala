@@ -11,27 +11,20 @@ import io.cenet.endpoints.GapiFacade
 import io.cenet.endpoints.GooglePromise
 import io.cenet.endpoints.GoogleResponse
 import scala.scalajs.js.JSON
-
-trait ListScope extends Scope {
-  var fetch : js.Function = js.native
-}
+import org.scalajs.dom.window
 
 class ListController($scope: js.Dynamic) extends ScopeController  {
 
-  var response = "test"
+  var postInput = "test"
+  var getInput = 0l
+  var getOutput = ""
+  val listApi = EndpointsFacade.gapi.client.list.listApi
   
-  $scope.fetch = () => {
-    def opt_onFulfilled= (response : GoogleResponse) => js.Dynamic.global.console.dir(JSON.parse(response.body))
-    def opt_onRejected = (response : GoogleResponse) => js.Dynamic.global.console.dir(response)
-    val opt_context : js.Object = null
+  $scope.post = () => listApi.post(StringRequest(postInput))
+    .then((response : GoogleResponse) => window.alert(s"OK:${response.body}"))
     
-    val getAll = EndpointsFacade.gapi.client.list.listApi.getAll
-    getAll.then(opt_onFulfilled, opt_onRejected, opt_context)
-
-    // Can obviously not find any with id 0l
-    val get = EndpointsFacade.gapi.client.list.listApi.get(IdRequest(0l))
-    get.then(opt_onFulfilled, opt_onRejected, opt_context)
-  }
+  $scope.get = () => listApi.get(IdRequest(getInput))
+    .then((response : GoogleResponse) => getOutput = response.body)
 }
 trait IdRequest extends js.Object {
   val id : Long = js.native
@@ -39,4 +32,11 @@ trait IdRequest extends js.Object {
 object IdRequest {
   def apply(id : Long) : IdRequest = 
     js.Dynamic.literal(id = id).asInstanceOf[IdRequest]
+}
+trait StringRequest extends js.Object {
+  val text : String = js.native
+}
+object StringRequest {
+  def apply(text : String) : StringRequest = 
+    js.Dynamic.literal(text = text).asInstanceOf[StringRequest]
 }

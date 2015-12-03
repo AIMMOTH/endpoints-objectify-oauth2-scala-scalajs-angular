@@ -29,6 +29,7 @@ trait ListFacade extends js.Object {
 trait ListApiFacade extends js.Object {
   def get(parameters : js.Object) : GooglePromise = js.native
   def getAll() : GooglePromise = js.native
+  def post(parameters : js.Object) : GooglePromise = js.native
 }
 
 /**
@@ -36,7 +37,9 @@ trait ListApiFacade extends js.Object {
  */
 @js.native
 trait GooglePromise extends js.Object {
-  def then(opt_onFulfilled : js.Function1[GoogleResponse, js.Dynamic], opt_onRejected : js.Function1[GoogleResponse, js.Dynamic], opt_context : js.Object) : Unit = js.native
+  def then(opt_onFulfilled : js.Function1[GoogleResponse, Unit] = (_ : GoogleResponse) => {},
+      opt_onRejected : js.Function1[GoogleResponse, Unit] = (_ : GoogleResponse) => {},
+      opt_context : js.Object = null) : Unit = js.native
 }
 @js.native
 trait GoogleResponse extends js.Object {
