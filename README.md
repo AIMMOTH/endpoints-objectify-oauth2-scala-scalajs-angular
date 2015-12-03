@@ -1,18 +1,36 @@
 # endpoints-objectify-oauth2-scala-scalajs
 
+ScalaJS
+-------
+
+Build ScalaJS including Google Endpoints and Angular:
+
+1) $ SBT
+
+2) fastOptJS
+
 Maven
 -----
 
-1) Build Scala JS with 1.1) $ SBT 1.2) fastOptJS
+1) Build ScalaJS (above)
 
 2) Run with $ mvn appengine:devserver
+
+Upload
+------
+
+Publish to Google Appengine with maven
+
+1) Build ScalaJS (above)
+
+2) $ mvn -Dapp.id=your-app-id -Dapp.version=your-app-version appengine:update
 
 App Engine Devserver
 --------------------
 
 Run locally with Appengine SDK.
 
-1) Build with maven $ mvn package
+1) Build ScalaJS (above)
 
 2) Optional: Download Appengine SDK or look for it in Maven repostiory
 
@@ -67,7 +85,4 @@ http://scala-ide.org/download/current.html
 
 6) Copy all libs from Maven build (target/enpoints.../WEB-INF/lib/*) to source (src/main/webapp/WEB-INF/lib/)
 
-Notes
------
-
-- Make it work and make sure it works on App Engine. Needs Java 7 compilation!
+7) Run with App Engine Devserver (above) but with your source.
