@@ -51,6 +51,11 @@ Check the API by starting it locally and go to (activate "insecure" scripts):
 http://localhost:8080/_ah/api/explorer
 ``` 
 
+Oauth2
+------
+
+Sooooon ...
+
 Eclipse
 -------
 
