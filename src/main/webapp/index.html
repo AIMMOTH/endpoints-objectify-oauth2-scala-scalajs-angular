@@ -15,6 +15,16 @@
   <div ng-controller="ListController as list">
     <div class="row">
       <div class="large-12 columns">
+
+        <label>Simple update</label>
+        <p><input type="button" ng-click="list.inc()" value="+"><input type="button" ng-click="list.dec()" value="-"></p>
+        <p>{{ list.simpleInt }}</p>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+      
         <p>Create a new list entity. The value must be comma separated with two values ("value1, value2..."). This will create a new entity in the database, and it's id will be returned and displayed below.</p>
         <form ng-submit="list.post()">
           <label>Enter comma separated value</label>
@@ -24,6 +34,8 @@
           <input type="text" ng-model="list.postResult">
         </form>
       </div>
+    </div>
+      <div class="row">
       <div class="large-12 columns">
         <label>Get</label>
         <p>Get a created entity via its id.</p>

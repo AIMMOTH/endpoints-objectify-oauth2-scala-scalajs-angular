@@ -16,9 +16,14 @@ import js.Dynamic.global
 import js.Dynamic.literal
 import biz.enef.angulate.Module
 
-class ListController extends Controller  {
+class ListController($scope : Scope) extends Controller  {
 
-  var postInput = "test"
+  var simpleInt = 0
+  
+  def inc() = simpleInt += 1
+  def dec() = simpleInt -= 1
+  
+  var postInput = "value1, value2"
   var postResult = "0l"
   var getInput = "0l"
   var getOutput = ""
@@ -35,12 +40,20 @@ class ListController extends Controller  {
    */
   def post() = listApi.post(literal(csv = postInput))
     .then(
-      (response : GoogleResponse) => postResult = JSON.parse(response.body).id.asInstanceOf[String],
+      (response : GoogleResponse) => {
+        postResult = JSON.parse(response.body).id.asInstanceOf[String]
+        $scope.$digest()
+      },
       (response : GoogleResponse) => window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
     )
     
   def get() = listApi.get(literal(id = getInput))
-    .then((response : GoogleResponse) =>  getOutput = response.body)
+    .then((response : GoogleResponse) =>  {
+      getOutput = response.body
+      $scope.$digest()
+    })
+    
+  
 }
 
 object ListController {
