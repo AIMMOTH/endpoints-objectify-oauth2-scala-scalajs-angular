@@ -15,6 +15,9 @@ import org.scalajs.dom.window
 import js.Dynamic.global
 import js.Dynamic.literal
 import biz.enef.angulate.Module
+import io.cenet.shared.SplitValidator
+import io.cenet.shared.Success
+import io.cenet.shared.Failure
 
 class ListController($scope : Scope) extends Controller  {
 
@@ -38,26 +41,23 @@ class ListController($scope : Scope) extends Controller  {
    *  To prevent error, check value with validator
    *  @see io.cenet.shared.SplitValidator
    */
-  def post() = listApi.post(literal(csv = postInput))
-    .then(
-      (response : GoogleResponse) => {
-        postResult = JSON.parse(response.body).id.asInstanceOf[String]
-        $scope.$digest()
-      },
-      (response : GoogleResponse) => window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
-    )
+  def post() = {
+    SplitValidator(postInput) match {
+      case Success((input, _)) =>
+        listApi.post(literal(csv = input)).then(
+          (response : GoogleResponse) => {
+            postResult = JSON.parse(response.body).id.asInstanceOf[String]
+                $scope.$digest()
+          },
+          (response : GoogleResponse) => window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
+          )
+      case Failure(message) => window.alert(message)
+    }
+  }
     
   def get() = listApi.get(literal(id = getInput))
     .then((response : GoogleResponse) =>  {
       getOutput = response.body
       $scope.$digest()
     })
-    
-  
-}
-
-object ListController {
-  
-  // Necessary due to https://github.com/jokade/scalajs-angulate/wiki/Known-Problems#controller-definition-and-registration-in-separate-files
-  def init(app : Module.RichModule) = app.controllerOf[ListController]("ListController")
 }
