@@ -86,3 +86,13 @@ http://scala-ide.org/download/current.html
 6) Copy all libs from Maven build (target/enpoints.../WEB-INF/lib/*) to source (src/main/webapp/WEB-INF/lib/)
 
 7) Run with App Engine Devserver (above) but with your source.
+
+References
+----------
+
+* Angulate https://github.com/jokade/scalajs-angulate
+* Endpoints client Javascript https://developers.google.com/eclipse/docs/endpoints-jspoints/consume_js 
+* Endpoints tutorial https://cloud.google.com/appengine/docs/java/endpoints
+* Scala JS scala-js.org
+* Scala http://www.artima.com/pins1ed/a-scalable-language.html
+* App Engine https://cloud.google.com/appengine/docs/java/
