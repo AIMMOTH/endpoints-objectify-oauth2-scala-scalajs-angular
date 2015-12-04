@@ -14,13 +14,14 @@ import scala.scalajs.js.JSON
 import org.scalajs.dom.window
 import js.Dynamic.global
 import js.Dynamic.literal
+import biz.enef.angulate.Module
 
-class ListController($scope : js.Dynamic) extends ScopeController  {
+class ListController extends Controller  {
 
-  $scope.postInput = "test"
-  $scope.postResult = ""
-  $scope.getInput = 0l
-  $scope.getOutput = ""
+  var postInput = "test"
+  var postResult = "0l"
+  var getInput = "0l"
+  var getOutput = ""
   
   /*
    *  This needs to be loaded before use
@@ -32,12 +33,18 @@ class ListController($scope : js.Dynamic) extends ScopeController  {
    *  To prevent error, check value with validator
    *  @see io.cenet.shared.SplitValidator
    */
-  $scope.post = () => listApi.post(literal(csv = $scope.postInput))
+  def post() = listApi.post(literal(csv = postInput))
     .then(
-      (response : GoogleResponse) => $scope.postResult = JSON.parse(response.body).id,
+      (response : GoogleResponse) => postResult = JSON.parse(response.body).id.asInstanceOf[String],
       (response : GoogleResponse) => window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
     )
     
-  $scope.get = () => listApi.get(literal(id = $scope.getInput))
-    .then((response : GoogleResponse) =>  $scope.getOutput = response.body)
+  def get() = listApi.get(literal(id = getInput))
+    .then((response : GoogleResponse) =>  getOutput = response.body)
+}
+
+object ListController {
+  
+  // Necessary due to https://github.com/jokade/scalajs-angulate/wiki/Known-Problems#controller-definition-and-registration-in-separate-files
+  def init(app : Module.RichModule) = app.controllerOf[ListController]("ListController")
 }

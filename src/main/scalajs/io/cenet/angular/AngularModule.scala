@@ -12,8 +12,10 @@ object AngularModule extends JSApp {
 
   override def main(): Unit = {
     
-    val module = angular.createModule("app", Seq("ngRoute"))
+    val app = angular.createModule("app", Seq("ngRoute"))
 
-    module.controllerOf[ListController]("ListController")
+  // Necessary due to https://github.com/jokade/scalajs-angulate/wiki/Known-Problems#controller-definition-and-registration-in-separate-files
+//    module.controllerOf[ListController]("ListController")
+    ListController.init(app)
   }
 }
