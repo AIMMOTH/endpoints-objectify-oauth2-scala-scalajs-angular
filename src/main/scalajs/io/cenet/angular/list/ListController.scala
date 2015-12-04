@@ -41,19 +41,19 @@ class ListController($scope : Scope) extends Controller  {
    *  To prevent error, check value with validator
    *  @see io.cenet.shared.SplitValidator
    */
-  def post() = {
-    SplitValidator(postInput) match {
+  def post() = SplitValidator(postInput) match {
       case Success((input, _)) =>
-        listApi.post(literal(csv = input)).then(
-          (response : GoogleResponse) => {
-            postResult = JSON.parse(response.body).id.asInstanceOf[String]
-                $scope.$digest()
-          },
-          (response : GoogleResponse) => window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
+        listApi.post(literal(csv = input))
+          .then(
+            (response : GoogleResponse) => {
+              postResult = JSON.parse(response.body).id.asInstanceOf[String]
+              $scope.$digest()
+            },
+            (response : GoogleResponse) =>
+              window.alert(JSON.parse(response.body).error.message.asInstanceOf[String])
           )
       case Failure(message) => window.alert(message)
     }
-  }
     
   def get() = listApi.get(literal(id = getInput))
     .then((response : GoogleResponse) =>  {
