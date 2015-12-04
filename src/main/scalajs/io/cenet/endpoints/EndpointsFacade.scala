@@ -1,7 +1,6 @@
 package io.cenet.endpoints
 
 import scala.scalajs.js
-import io.cenet.angular.list.IdRequest
 
 @js.native
 object EndpointsFacade extends js.GlobalScope {
@@ -27,9 +26,9 @@ trait ListFacade extends js.Object {
 }
 @js.native
 trait ListApiFacade extends js.Object {
-  def get(parameters : js.Object) : GooglePromise = js.native
+  def get(parameters : js.Dynamic) : GooglePromise = js.native
   def getAll() : GooglePromise = js.native
-  def post(parameters : js.Object) : GooglePromise = js.native
+  def post(parameters : js.Dynamic) : GooglePromise = js.native
 }
 
 /**

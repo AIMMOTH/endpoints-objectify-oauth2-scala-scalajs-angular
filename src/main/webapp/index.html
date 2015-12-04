@@ -15,19 +15,23 @@
   <div ng-controller="ListController as list">
     <div class="row">
       <div class="large-12 columns">
-        <label>Create</label>
-        <p>Create a new list entity</p>
+        <p>Create a new list entity. The value must be comma separated with two values ("value1, value2..."). This will create a new entity in the database, and it's id will be returned and displayed below.</p>
         <form ng-submit="post()">
-          <input type="text" ng-model="postInput">{{postInput}}
+          <label>Enter comma separated value</label>
+          <input type="text" ng-model="postInput">
           <input type="submit" value="POST">
+          <label>Id of created entity</label>
+          <input type="text" ng-model="postResult">
         </form>
       </div>
       <div class="large-12 columns">
         <label>Get</label>
         <p>Get a created entity via its id.</p>
         <form ng-submit="get()">
-          <input type="number" ng-model="getInput">{{getInput}}
+          <label>Enter id</label>
+          <input type="number" ng-model="getInput">
           <input type="submit" value="GET">
+          <label>Fetched entity</label>
           <textarea ng-model="getOutput"></textarea>
         </form>
       </div>
