@@ -1,11 +1,13 @@
 # endpoints-objectify-oauth2-scala-scalajs
 
+This is a small example of how to implement Angular and Google Endpoints with Scala JS.
+
 ScalaJS
 -------
 
 Build ScalaJS including Google Endpoints and Angular:
 
-1) $ SBT
+1) $ sbt
 
 2) fastOptJS
 
@@ -54,13 +56,19 @@ http://localhost:8080/_ah/api/explorer
 Oauth2
 ------
 
-Sooooon ...
+Either use
+
+* Google Oauth2 with Google Endpoints. See https://cloud.google.com/appengine/docs/java/endpoints/consume_js
+
+* Use another provider and send the token in either:
+* The request body
+* In header, but you need to use Google API basic request then. See https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientrequestargs 
+
 
 Foundation
 ----------
 
 By Zurb for frontend framework.
-
 
 Eclipse
 -------
@@ -107,3 +115,4 @@ References
 * Scala JS scala-js.org
 * Scala http://www.artima.com/pins1ed/a-scalable-language.html
 * App Engine https://cloud.google.com/appengine/docs/java/
+* Zurb Foundation http://foundation.zurb.com/sites/docs/kitchen-sink.html
