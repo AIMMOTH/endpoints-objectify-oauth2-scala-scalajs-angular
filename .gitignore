@@ -1,6 +1,10 @@
 .cache-main
 .classpath
 .project
+nb-configuration.xml
+*.bat
+.externalToolBuilders/
+.settings/
 /settings/
 /project/project/
 /project/target/
