@@ -3,6 +3,8 @@
 .project
 nb-configuration.xml
 *.bat
+*.iml
+.idea/
 .externalToolBuilders/
 .settings/
 /settings/
