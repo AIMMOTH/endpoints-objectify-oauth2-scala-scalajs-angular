@@ -45,7 +45,7 @@
         <p>Get a created entity via its id.</p>
         <form ng-submit="facade.get()">
           <label>Enter id</label>
-          <input type="text" ng-model="facade.input">
+          <input type="number" ng-model="facade.input">
           <input type="submit" value="GET">
           <label>Fetched entity</label>
           <textarea ng-model="facade.entityJson"></textarea>
