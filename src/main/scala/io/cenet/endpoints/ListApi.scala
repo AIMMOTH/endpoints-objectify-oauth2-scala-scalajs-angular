@@ -63,7 +63,7 @@ class ListApi {
      * Deletes the entity with an idempotent work (in case other processes
      * uses the entity).
      */
-  @ApiMethod(httpMethod = "delete", path = "{id}")
+  @ApiMethod(httpMethod = "delete", path = "{id}", authenticators = Array(classOf[ScalaAuthenticator]))
   def delete(user : ApiUser, @Named("id") id : JLong) : Unit = 
     // Make DELETE (update) idempotent
     Objectify.transaction(new VoidWork {

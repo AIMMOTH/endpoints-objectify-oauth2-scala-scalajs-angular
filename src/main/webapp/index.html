@@ -12,39 +12,43 @@
     </div>
   </div>
   
-  <div ng-controller="ListController as list">
+  <div ng-controller="SimpleController as simple">
     <div class="row">
       <div class="large-12 columns">
 
         <label>Simple update</label>
-        <p><input type="button" ng-click="list.inc()" value="+"><input type="button" ng-click="list.dec()" value="-"></p>
-        <p>{{ list.simpleInt }}</p>
+        <p><input type="button" ng-click="simple.inc()" value="+"><input type="button" ng-click="simple.dec()" value="-"></p>
+        <p>{{ simple.simpleInt }}</p>
       
       </div>
     </div>
+  </div>
+  <div ng-controller="DynamicController as dyn">
     <div class="row">
       <div class="large-12 columns">
       
         <p>Create a new list entity. The value must be comma separated with two values ("value1, value2..."). This will create a new entity in the database, and it's id will be returned and displayed below.</p>
-        <form ng-submit="list.post()">
+        <form ng-submit="dyn.post()">
           <label>Enter comma separated value</label>
-          <input type="text" ng-model="list.postInput">
+          <input type="text" ng-model="dyn.input">
           <input type="submit" value="POST">
           <label>Id of created entity</label>
-          <input type="text" ng-model="list.postResult">
+          <input type="text" ng-model="dyn.idResult">
         </form>
       </div>
     </div>
-      <div class="row">
+  </div>
+  <div ng-controller="FacadeController as facade">
+    <div class="row">
       <div class="large-12 columns">
         <label>Get</label>
         <p>Get a created entity via its id.</p>
-        <form ng-submit="list.get()">
+        <form ng-submit="facade.get()">
           <label>Enter id</label>
-          <input type="text" ng-model="list.getInput">
+          <input type="text" ng-model="facade.input">
           <input type="submit" value="GET">
           <label>Fetched entity</label>
-          <textarea ng-model="list.getOutput"></textarea>
+          <textarea ng-model="facade.entityJson"></textarea>
         </form>
       </div>
     </div>

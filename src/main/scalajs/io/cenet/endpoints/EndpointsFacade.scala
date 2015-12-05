@@ -1,6 +1,7 @@
 package io.cenet.endpoints
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSBracketAccess
 
 @js.native
 object EndpointsFacade extends js.GlobalScope {
@@ -17,31 +18,39 @@ trait GapiFacade extends js.Object {
 }
 @js.native
 trait ClientFacade extends js.Object {
+  
+  /**
+   * Loads an API by its name.
+   * @see https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientloadname--------version-callback
+   */
   def load(apiName : String, version : String, callback : Unit, url : String) : Unit = js.native
+  
+  /**
+   * This returns the List API as a Facade with types.
+   * This is a "hard coded" way to specify your API
+   * <strong>Needs to be loaded first!</strong>
+   */
   val list : ListFacade = js.native
-}
-@js.native
-trait ListFacade extends js.Object {
-  val listApi : ListApiFacade = js.native
-}
-@js.native
-trait ListApiFacade extends js.Object {
-  def get(parameters : js.Dynamic) : GooglePromise = js.native
-  def getAll() : GooglePromise = js.native
-  def post(parameters : js.Dynamic) : GooglePromise = js.native
+  
+  /**
+   * This returns the specified API as Dynamic.
+   * <strong>Needs to be loaded first!</strong>
+   */
+  @JSBracketAccess
+  def apply(apiName : String) : js.Dynamic = js.native
 }
 
 /**
  * https://developers.google.com/api-client-library/javascript/features/promises
  */
 @js.native
-trait GooglePromise extends js.Object {
-  def then(opt_onFulfilled : js.Function1[GoogleResponse, Unit] = (_ : GoogleResponse) => {},
-      opt_onRejected : js.Function1[GoogleResponse, Unit] = (_ : GoogleResponse) => {},
+trait EndpointPromise extends js.Object {
+  def then(opt_onFulfilled : js.Function1[EndpointResponse, Unit] = (_ : EndpointResponse) => {},
+      opt_onRejected : js.Function1[EndpointResponse, Unit] = (_ : EndpointResponse) => {},
       opt_context : js.Object = null) : Unit = js.native
 }
 @js.native
-trait GoogleResponse extends js.Object {
+trait EndpointResponse extends js.Object {
   val result    : js.Dynamic= js.native
   val body      : String    = js.native
   val headers   : js.Object = js.native

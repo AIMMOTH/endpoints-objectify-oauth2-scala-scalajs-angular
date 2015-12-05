@@ -1,12 +1,7 @@
 package io.cenet.angular
 
 import scala.scalajs.js.JSApp
-
-import biz.enef.angulate._
-import biz.enef.angulate.core.HttpService
-import biz.enef.angulate.ext.{ Route, RouteProvider }
-
-import io.cenet.angular.list.ListController
+import biz.enef.angulate.angular
 
 object AngularModule extends JSApp {
 
@@ -14,6 +9,8 @@ object AngularModule extends JSApp {
     
     val app = angular.createModule("app", Seq("ngRoute"))
 
-    app.controllerOf[ListController]("ListController")
+    app.controllerOf[SimpleController]("SimpleController")
+    app.controllerOf[DynamicController]("DynamicController")
+    app.controllerOf[FacadeController]("FacadeController")
   }
 }
