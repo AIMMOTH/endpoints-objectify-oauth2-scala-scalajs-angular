@@ -64,6 +64,9 @@ Either use
 * The request body
 * In header, but you need to use Google API basic request then. See https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientrequestargs 
 
+Example of Scala Authenticator:
+
+https://github.com/AIMMOTH/endpoints-objectify-oauth2-scala-scalajs-angular/blob/master/src/main/scala/io/cenet/endpoints/ScalaAuthenticator.scala
 
 Foundation
 ----------
