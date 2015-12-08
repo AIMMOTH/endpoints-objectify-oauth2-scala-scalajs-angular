@@ -7,10 +7,11 @@ object AngularModule extends JSApp {
 
   override def main(): Unit = {
     
-    val app = angular.createModule("app", Seq("ngRoute"))
-
-    app.controllerOf[SimpleController]("SimpleController")
-    app.controllerOf[DynamicController]("DynamicController")
-    app.controllerOf[FacadeController]("FacadeController")
+    angular.createModule("app", Seq("ngRoute")) match {
+      case app => 
+        app.controllerOf[SimpleController]("SimpleController")
+        app.controllerOf[DynamicController]("DynamicController")
+        app.controllerOf[FacadeController]("FacadeController")
+    }
   }
 }
