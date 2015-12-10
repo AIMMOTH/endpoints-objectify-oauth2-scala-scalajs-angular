@@ -76,6 +76,14 @@ By Zurb for frontend framework.
 Eclipse
 -------
 
+A) Import via "Maven integration for Scala IDE".
+
+1) Import as Maven projects
+
+2) Quick fix problems in "Problems" list (ctrl-1) and install plugins.
+
+B)
+
 Create Eclipse project with some modifications and import
 
 1) Install Scala IDE plugin
