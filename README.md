@@ -71,7 +71,7 @@ gapi.auth.setToken({access_token: token});
 3 Activate sessions in Google Endpoints backend and use a authenticator (below). Remember that Endpoints may not use a custom domain and authorization is per domain! See http://stackoverflow.com/a/28745414/671188
 
 ```
-auth = @ApiAuth(allowCookieAuth = AnnotationBoolean.TRUE
+auth = @ApiAuth(allowCookieAuth = AnnotationBoolean.TRUE)
 ``` 
 
 
