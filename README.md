@@ -2,6 +2,8 @@
 
 This is a small example of how to implement Angular and Google Endpoints with Scala JS.
 
+https://master-dot-io-cenet-scalajs-concept.appspot.com
+
 ScalaJS
 -------
 
@@ -58,11 +60,20 @@ Oauth2
 
 Either use
 
-* Google Oauth2 with Google Endpoints. See https://cloud.google.com/appengine/docs/java/endpoints/consume_js
+1 Google Oauth2 with Google Endpoints. See https://cloud.google.com/appengine/docs/java/endpoints/consume_js
 
-* Use another provider and send the token in either:
-* The request body
-* In header, but you need to use Google API basic request then. See https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientrequestargs 
+2 Use another provider and send the token in either with Google Endpoints generated Javascript See https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauthsettokentoken
+
+```
+gapi.auth.setToken({access_token: token});
+```
+
+3 Activate sessions in Google Endpoints backend and use a authenticator (below). Remember that Endpoints may not use a custom domain and authorization is per domain! See http://stackoverflow.com/a/28745414/671188
+
+```
+auth = @ApiAuth(allowCookieAuth = AnnotationBoolean.TRUE
+``` 
+
 
 Example of Scala Authenticator:
 
@@ -71,7 +82,7 @@ https://github.com/AIMMOTH/endpoints-objectify-oauth2-scala-scalajs-angular/blob
 Foundation
 ----------
 
-By Zurb for frontend framework.
+Foundation frontend framework by Zurb.
 
 Eclipse
 -------
