@@ -9,33 +9,40 @@ ScalaJS
 
 Build ScalaJS including Google Endpoints and Angular:
 
-.1 $ sbt
-.1 fastOptJS
+1) $ sbt
+
+2) fastOptJS
 
 Maven
 -----
 
-.1 Build ScalaJS (above)
-.1 Run with (no hot deploy) $ mvn appengine:devserver
+1) Build ScalaJS (above)
+
+2) Run with (no hot deploy) $ mvn appengine:devserver
 
 Upload
 ------
 
 Publish to Google Appengine with maven
 
-.1 Build ScalaJS (above)
-.1 $ mvn -Dapp.id=your-app-id -Dapp.version=your-app-version appengine:update
+1) Build ScalaJS (above)
+
+2) $ mvn -Dapp.id=your-app-id -Dapp.version=your-app-version appengine:update
 
 App Engine Devserver
 --------------------
 
 Run locally with Appengine SDK.
 
-.1 Build ScalaJS (above)
-.1 Optional: Download Appengine SDK or look for it in Maven repostiory
-.1 Build webapp folder. Compile into webapp/WEB-INF/classes and copy dependency libs to webapp/WEB-INF/lib
-.1 Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 target/.../webapp
-.1 Optional: Add flag to start Java remote debugger
+1) Build ScalaJS (above)
+
+2) Optional: Download Appengine SDK or look for it in Maven repostiory
+
+3) Build webapp folder. Compile into webapp/WEB-INF/classes and copy dependency libs to webapp/WEB-INF/lib
+
+4) Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 target/.../webapp
+
+5) Optional: Add flag to start Java remote debugger
 ```
 --jvm_flag=-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
 ```
@@ -80,11 +87,13 @@ Foundation frontend framework by Zurb.
 
 Eclipse
 -------
-.1 Install Scala IDE plugin
+1) Install Scala IDE plugin
+
 ```
 http://scala-ide.org/download/current.html
 ```
-.1 Import as Maven projects
+
+2) Import as Maven projects
 
 
 References
