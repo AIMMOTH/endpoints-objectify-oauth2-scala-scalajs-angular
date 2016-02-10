@@ -9,39 +9,33 @@ ScalaJS
 
 Build ScalaJS including Google Endpoints and Angular:
 
-1) $ sbt
-
-2) fastOptJS
+.1 $ sbt
+.1 fastOptJS
 
 Maven
 -----
 
-1) Build ScalaJS (above)
-
-2) Run with $ mvn appengine:devserver
+.1 Build ScalaJS (above)
+.1 Run with (no hot deploy) $ mvn appengine:devserver
 
 Upload
 ------
 
 Publish to Google Appengine with maven
 
-1) Build ScalaJS (above)
-
-2) $ mvn -Dapp.id=your-app-id -Dapp.version=your-app-version appengine:update
+.1 Build ScalaJS (above)
+.1 $ mvn -Dapp.id=your-app-id -Dapp.version=your-app-version appengine:update
 
 App Engine Devserver
 --------------------
 
 Run locally with Appengine SDK.
 
-1) Build ScalaJS (above)
-
-2) Optional: Download Appengine SDK or look for it in Maven repostiory
-
-3) Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 target/.../webapp
-
-4) Optional: Add flag to start Java remote debugger
-
+.1 Build ScalaJS (above)
+.1 Optional: Download Appengine SDK or look for it in Maven repostiory
+.1 Build webapp folder. Compile into webapp/WEB-INF/classes and copy dependency libs to webapp/WEB-INF/lib
+.1 Start with address and port as parameters $ %APPENGINE_SDK_HOME%/bin/dev_appserver -a localhost -p 8080 target/.../webapp
+.1 Optional: Add flag to start Java remote debugger
 ```
 --jvm_flag=-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
 ```
@@ -86,47 +80,12 @@ Foundation frontend framework by Zurb.
 
 Eclipse
 -------
-
-A) Import via "Maven integration for Scala IDE".
-
-1) Import as Maven projects
-
-2) Quick fix problems in "Problems" list (ctrl-1) and install plugins.
-
-B)
-
-Create Eclipse project with some modifications and import
-
-1) Install Scala IDE plugin
-
+.1 Install Scala IDE plugin
 ```
 http://scala-ide.org/download/current.html
 ```
+.1 Import as Maven projects
 
-2) $ mvn eclipse:eclipse
-
-3) Edit .project and replace builder and nature. You can create a new Eclipse Scala Project, open the .project file and use it as reference.
-
-```
-	<buildSpec>
-		<buildCommand>
-			<name>org.scala-ide.sdt.core.scalabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.scala-ide.sdt.core.scalanature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-```
-4) Import in Eclipse
-
-5) Set source and target output
-
-6) Copy all libs from Maven build (target/enpoints.../WEB-INF/lib/*) to source (src/main/webapp/WEB-INF/lib/)
-
-7) Run with App Engine Devserver (above) but with your source.
 
 References
 ----------
